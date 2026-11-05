@@ -2,11 +2,11 @@ name: Manual Run
 
 on: 
   workflow_dispatch:
-  inputs:
-    name: 
-      description: 'Your name'
-      required: false
-      default: 'friend'
+    inputs:
+      name: 
+        description: 'Your name'
+        required: false
+        default: 'friend'
 
 jobs:
   hello:
