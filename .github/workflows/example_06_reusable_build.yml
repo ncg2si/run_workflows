@@ -31,7 +31,10 @@ jobs:
         name: Set build version
         run: |
           # In real world you'd compute or read the version
+          
           echo "build_version=1.2.3" >> $GITHUB_OUTPUT
+          echo "commit=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+
 
       - name: Run unit tests (no-op example)
         run: echo "Unit tests would run here"
