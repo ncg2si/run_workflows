@@ -24,7 +24,7 @@ jobs:
       - name: Run tests (capture logs)
         # Always produce test.log even if tests fail
         run: |
-          pytest -q | tee test.log || true
+          pytest -q 2>&1 | tee test.log || true
 
       - name: Upload test logs
         uses: actions/upload-artifact@v4
