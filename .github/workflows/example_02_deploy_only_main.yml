@@ -8,6 +8,6 @@ jobs:
     if: github.ref  == 'ref/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - run:
+      - run: |
           echo "Ref = $GITHUB_REF"
           echo "Deploying from main branch"
