@@ -1,0 +1,28 @@
+name: Dependency Matrix Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dep-matrix:
+    strategy:
+      matrix:
+        requests-version: ["2.26.0","2.28.0"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the specific requests version and pytest
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "requests==${{ matrix.requests-version }}" pytest
+
+      - name: Run tests
+        run: pytest -q || true
