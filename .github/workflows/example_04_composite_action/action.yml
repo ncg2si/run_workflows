@@ -5,4 +5,12 @@ runs:
   steps:
     - name: Print greeting
       shell: bash
-      run: echo "Hello from composite action! (actor=${{ github.actor }})"
+      run: |
+        echo "Hello from composite action! (actor=${{ github.actor }})"
+        echo "Hello from composite action! (ref=${{ github.ref }})"
+        echo "Hello from composite action! (sha=${{ github.sha }})"
+        echo "Hello from composite action! (workflow=${{ github.workflow }})"
+        echo "Hello from composite action! (event_name=${{ github.event_name }})"
+        echo "Hello from composite action! (repository=${{ github.repository }})"
+        echo "Hello from composite action! (run_id=${{ github.run_id }})"
+        echo "Hello from composite action! (run_number=${{ github.run_number }})"
