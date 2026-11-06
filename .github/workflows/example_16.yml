@@ -1,0 +1,12 @@
+name: Call External Reusable Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    # Replace with a real owner/repo/path@tag in your org or a public repo
+    uses: my-org/infra/.github/workflows/python-build.yml@v1
+    with:
+      python-version: "3.11"
