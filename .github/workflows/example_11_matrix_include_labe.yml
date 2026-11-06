@@ -1,22 +1,28 @@
-name: Matrix Include with Label
+name: JUnit Report Upload
 
 on: [push, pull_request]
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        python-version: ["3.10","3.11"]
-        include:
-          - python-version: "3.12"
-            label: "preview"
-    name: Build (py ${{ matrix.python-version }} ${{ matrix.label }})
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Print matrix info
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
         run: |
-          echo "Matrix python-version=${{ matrix.python-version }}"
-          echo "Label='${{ matrix.label }}'"
+          python -m pip install --upgrade pip
+          pip install pytest
+      - name: Run tests and generate junit xml
+        run: |
+          mkdir -p test-output
+          pytest --junitxml=test-output/report.xml || true
+      - name: Upload JUnit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-report  
+          path: test-output/report.xml
