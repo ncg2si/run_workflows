@@ -1,0 +1,15 @@
+name: Post Process
+
+on:
+  workflow_run:
+    workflows: ["workflow A"]
+    types:
+      - completed
+
+jobs:
+  post:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post-run step
+        run: echo "Downstream workflow triggered after successful CI run"
