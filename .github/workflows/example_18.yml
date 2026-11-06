@@ -1,0 +1,21 @@
+name: Fail-Fast Matrix Demo
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        python-version: ["3.10","3.11","3.12"]
+      fail-fast: true
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "This is matrix entry for ${{ matrix.python-version }}"
+          # Simulate a failure for 3.11 to see fail-fast behavior
+          if [ "${{ matrix.python-version }}" = "3.11" ]; then
+            echo "Simulated failure for 3.11"
+            exit 1
+          fi

@@ -12,10 +12,12 @@
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:ncg2si/run_workflows:*"
+          "token.actions.githubusercontent.com:sub": [
+            "repo:ncg2si@109017990/run_workflows@1447263722:*",
+            "repo:ncg2si/run_workflows:*"
+          ]
         }
       }
     }
   ]
 }
-
