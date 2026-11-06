@@ -1,8 +1,6 @@
 name: Build Matrix Upload + E2E Download
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   build:
